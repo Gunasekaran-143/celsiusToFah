@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="your_existing_stylesheet.css"> <!-- Add the path to your existing stylesheet here -->
+
+    <style>
+        /* Add any additional styles or overrides here */
+
+        /* Center the container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Style the form container */
+        .form-container {
+            background: linear-gradient(to bottom, #c1e4f7, #f8c9d4); /* Pastel blue to pastel pink gradient */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style labels and inputs */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style the buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-container button {
+            flex: 1;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-container button:nth-child(1) {
+            background-color: #007BFF;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .button-container button:nth-child(2) {
+            background-color: #ff6b6b;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .button-container button:nth-child(3) {
+            background-color: #8db596;
+            color: #fff;
+        }
+
+        /* Style the result */
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Style the fieldset */
+        fieldset {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content horizontally */
+        }
+
+        /* Style the legend */
+        legend {
+            font-weight: bold;
+            color: #007BFF;
+            text-align: center;
+        }
+
+        /* Style the label and input containers */
+        .input-container {
+            margin-bottom: 10px;
+        }
+
+        /* Set the outer background color */
+        body {
+            background: linear-gradient(to bottom, #507f99, #f0a7a0); /* Darker pastel blue to pastel pink gradient for the content area */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Temperature Converter</h1>
+            <form id="converter-form">
+                <fieldset>
+                    <legend>Temperature Conversion</legend>
+                    <div class="input-container">
+                        <label for="celsius">Celsius:</label>
+                        <input type="number" id="celsius" style="width: 250px;" >
+                    </div>
+                    <div class="input-container">
+                        <label for="fahrenheit">Fahrenheit:</label>
+                        <input type="number" id="fahrenheit" style="width: 250px;">
+                    </div>
+                </fieldset><br>
+                <div class="button-container">
+                    <button onclick="convertCelsiusToFahrenheit(); return false;">Convert to Fahrenheit</button>
+                    <button onclick="convertFahrenheitToCelsius(); return false;">Convert to Celsius</button>
+                    <button onclick="resetForm(); return false;">Reset</button>
+                </div>
+                <p id="result"></p>
+            </form>
+        </div>
+    </div>
+    <script>
+        function convertCelsiusToFahrenheit() {
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const resultElement = document.getElementById("result");
+
+            const celsius = parseFloat(celsiusInput.value);
+            const fahrenheit = (celsius * 9/5) + 32;
+
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+            resultElement.textContent = `${celsius}°C is equal to ${fahrenheit.toFixed(2)}°F`;
+        }
+
+        function convertFahrenheitToCelsius() {
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const resultElement = document.getElementById("result");
+
+            const fahrenheit = parseFloat(fahrenheitInput.value);
+            const celsius = (fahrenheit - 32) * 5/9;
+
+            celsiusInput.value = celsius.toFixed(2);
+            resultElement.textContent = `${fahrenheit}°F is equal to ${celsius.toFixed(2)}°C`;
+        }
+
+        function resetForm() {
+            document.getElementById("converter-form").reset();
+            document.getElementById("result").textContent = "";
+        }
+    </script>
+</body>
+</html>
